@@ -104,23 +104,23 @@ body{
     display: inline;
   }
 
-    .pagination li a{
+    .pagination li {
       border: 1px solid #eaeaea;
       border-radius: 5px;
       padding: 3px 8px;
-      text-decoration: none;
+      text-decoration: underline white;
       color: #4ba6c3;
     }
 
-    .pagination li a.active,
+    .pagination li ,
     .pagination li a:hover{
       background-color: #4ba6c3;
-      color: #fff;
+      
     }
 
-    button {
-      border: none;
+    .pagination li {
       background: white;
-      color: darkblue;
-      font-size: 15px;
+      font-size: 16px;
     }
+
+  
