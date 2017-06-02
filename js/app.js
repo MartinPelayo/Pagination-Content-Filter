@@ -1,96 +1,28 @@
-let i1 = 0;
-let i2 = 10;
-let pageNum = 2;
-let test = $('li').length;
-let allLi = $('li').length;
+let perPage = $('.student-item').length / 10; //Global variables declared at top
+let pageTotal = Math.ceil(perPage);
+let $students = $('.student-item');
+let pageNum = 0;
 
-$('.back').hide();
-$('li').slice(i2, allLi).hide();
-$('button span').html(pageNum);
+$students.slice(10).hide(); //Hide all students initially but first 10
 
-$('.more').click(function(){   //manages click for more button////////////////////////
-  i1 += 10;
-  i2 += 10;
+for (i = 0; i < pageTotal; i++) { //Make page links for each Page of students
   pageNum += 1;
-  
-  $('li').hide();
-  $('li').slice(i1, i2).show();
-  $('button span').html(pageNum);
+  $('.pagination').append(`<a href="#"><li>${pageNum}</li><a>`);
+};
 
-  if(i2 >= test){
-    $('.more').hide();
+$('a').click(function(e){ //Click handler for page links
+  let numButton = +$(e.target).text();
+  e.preventDefault();
+
+  if(numButton === 1){  //Conditional statment uses page number to calculate and show correct page 
+    $students.hide();
+    $students.slice(0,10).show();
+  } else {
+    $students.hide();
+    numAdjust = numButton - 1;
+    index1 = numAdjust * 10;
+    index2 = index1 + 10;
+    showStudent = $students.slice(index1,index2);
+    showStudent.show();
   }
-  if(i1 > 5) {
-    $('.back').show();
-  }else{
-    $('.back').hide();
-  }
-});
-  
-$('.back').click(function(){  //manages click for back button////////////////////////
-  i1 -= 10;
-  i2 -= 10;
-  pageNum -= 1;
-  
-  $('li').hide();
-  $('li').slice(i1, i2).show();
-  $('button span').html(pageNum);
-  
-  if( i2 <= test){
-    $('.more').show();
-  }
-  if(i1 > 5) {
-    $('.back').show();
-  }else{
-    $('.back').hide();
-  }
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// $('.student-item, .back').hide();
-
-// let i1 = 0;
-// let i2 = 10;
-
-// let index1 = $('li').length;
-// let index2 = $('li').length;
-// console.log(index1);
-
-// test = $(document).ready(function(){
-// let i = $('li').slice(i1, i2).show();
-
-// });
-
-// $('.more').click(function(){
-//   $('.back').show();
-//   i1 += 10;
-//   i2 += 10;
-// });
+});                
